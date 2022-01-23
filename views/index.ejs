@@ -1,0 +1,64 @@
+
+<%- include('layouts/header') %>
+<%- include('layouts/nav') %>
+<%  let p=0; articles.forEach(article => {
+    console.log(p);
+    if((p)%2==0){%>
+<!-- Cards -->
+<div class="section">
+    <div class="cards">
+        <div class="img">
+            <img src="https://images.unsplash.com/file-1636585210491-f28ca34ea8ecimage" alt="">
+        </div>
+        <div class="text">
+            <div class="heading">
+                <%=  article.title %>
+            </div>
+            <div class="date">
+                <%= article.createdAt.toLocaleDateString() %>
+            </div>
+            <div class="para">
+              <%= article.about %>
+            </div>
+            <button class="show-modal button" onclick="popup(this.nextElementSibling)">
+                Read More....   
+            </button>
+            <div class="modall hidden">
+                <button class="close-modal">&times;</button>
+                <h1><%=  article.title %></h1>
+                <p><%= article.description %></p>    
+                </div>
+                <div class="overlay hidden"></div>
+            </div>
+        </div>
+        <%}
+        else{%>
+        <div class="cards">
+            <div class="text">
+                <div class="heading">
+                    <%=  article.title %>
+                </div>
+                <div class="date">
+                    <%= article.createdAt.toLocaleDateString() %>
+                </div>
+                <div class="para">
+                  <%= article.about %>
+                </div>
+            <button class="show-modal button"  onclick="popup(this.nextElementSibling)">
+                Read More....
+            </button>
+            <div class="modall hidden">
+                <button class="close-modal">&times;</button>
+                <h1><%=  article.title %></h1>
+                <p><%= article.description %></p>
+                </div>
+                <div class="overlay hidden"></div>
+            </div>
+            <div class="img">
+                <img src="https://images.unsplash.com/file-1636585210491-f28ca34ea8ecimage" alt="">
+            </div>
+        </div>
+    </div>
+
+<%}p++;})%>
+<%- include('layouts/footer')%>
